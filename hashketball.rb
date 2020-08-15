@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +128,174 @@ def game_hash
   }
 end
 
+game_hash
+def num_points_scored (player_name)
+  score_results = game_hash.map do |home_away, team_info|
+    team_info.map do |key,array|
+      if key == :players
+        array.map do |hash|
+          hash.map do |key, value|
+            if key == :player_name && value == player_name
+              hash.map do |key,value|
+                if key == :points
+                  player_name = value
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  player_name
+end
+
+num_points_scored("Bismack Biyombo")
 # Write code here
+
+def shoe_size(player_name)
+  shoe_result = game_hash.map do |home_away,team_info|
+    team_info.map do |key, array|
+      if key == :players 
+        array.map do |hash|
+          hash.map do |key,value|
+            if key == :player_name && value == player_name
+              hash.map do |key, value|
+                if key == :shoe
+                  player_name = value
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  player_name
+end
+
+shoe_size("Bismack Biyombo")
+
+def shoe_size(player_name)
+  shoe_result = game_hash.map do |home_away,team_info|
+    team_info.map do |key, array|
+      if key == :players 
+        array.map do |hash|
+          hash.map do |key,value|
+            if key == :player_name && value == player_name
+              hash.map do |key, value|
+                if key == :shoe
+                  player_name = value
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  player_name
+end
+
+shoe_size("Bismack Biyombo")
+
+def team_colors (team_name)
+#returns an array of the team's colors
+color_results = game_hash.map do |ha_key, teaminfo_hash|
+    teaminfo_hash.map do |key, value|
+     if key == :team_name && value == team_name then
+       teaminfo_hash.map do |key, value|
+         if key == :colors 
+           team_name = value
+          end
+        end
+      end
+    end
+  end
+  team_name
+end
+
+team_colors("Brooklyn Nets")
+
+def team_names
+  team_names =[]
+  game_hash.map do |key, value|
+    value.map do |key, value|
+      if key == :team_name 
+       team_names << value
+      end
+    end
+  end
+  team_names
+end
+
+team_names
+
+def player_numbers (team_name)
+  num_array = []
+  game_hash.map do |home_away, stats_keys|
+    stats_keys.map do |key, value|
+      if key == :team_name && value == team_name
+        stats_keys.map do |key,hash|
+          if key == :players 
+            hash.map do |array|
+             array.map do |key, value|
+               if key == :number 
+                 num_array << value
+                end
+              end
+            end
+          end
+        end
+      end
+    end 
+  end
+  num_array
+end
+
+player_numbers ("Brooklyn Nets")
+
+def player_stats(player_name)
+  game_hash.map do |home_away, stats_info|
+    stats_info.map do |key,value|
+      if key == :players 
+        value.map do |array|
+          array.map do |key,value|
+            if key == :player_name && player_name == value
+              player_name = array
+            end
+          end
+        end
+      end
+    end
+  end
+  player_name
+end
+
+player_stats("Bismack Biyombo")
+
+def big_shoe_rebounds
+  max_value = 0
+  shoe_size = 0
+  game_hash.map do |key,value|
+    value.map do |key,value|
+      if key == :players 
+        value.map do |array|
+          array.map do |key,value|
+            if key == :shoe && max_value < value.to_i 
+              max_value = value
+                array.map do |key,value|
+                  if key == :rebounds 
+                    shoe_size = value
+                  end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  shoe_size
+end
+
+big_shoe_rebounds
