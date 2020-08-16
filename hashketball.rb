@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +128,151 @@ def game_hash
   }
 end
 
-# Write code here
+#______________________________________________________________________
+#Player_scores
+
+def num_points_scored_helper
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+  points_scored = all_players[0..9].map { |i| {i[:player_name] => i[:points]}}
+end
+
+def num_points_scored(player_name)
+ points_scored = 0 
+  num_points_scored_helper.each do |name_points|
+    current_player = name_points.keys.first
+    current_points = name_points.values.first
+    
+    if current_player == player_name
+       points_scored = current_points
+      
+    end 
+  end  
+    points_scored
+end
+
+#______________________________________________________________________
+#Shoe size 
+
+def shoe_size_helper
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+  player_shoe_size = all_players[0..9].map { |i| {i[:player_name] => i[:shoe]}}
+end
+
+def shoe_size(player_name)
+ player_shoe = 0 
+  shoe_size_helper.each do |name_points|
+    current_player = name_points.keys.first
+    current_shoe = name_points.values.first
+    
+    if current_player == player_name
+       player_shoe = current_shoe
+      
+    end 
+  end  
+    player_shoe
+end
+
+#________________________________________________________________
+#Team colors
+
+def team_colors(team_name)
+  if 
+    team_name == game_hash[:home][:team_name]
+    game_hash[:home][:colors]
+   elsif
+    team_name == game_hash[:away][:team_name]
+    game_hash[:away][:colors]
+  end  
+end  
+
+#_______________________________________________________________
+#Team names 
+
+def team_names
+  [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+end
+#_______________________________________________________________
+#Player number helpers
+
+
+def home_player_number_helper
+  game_hash[:home][:players][0..4].map  { |i| i[:number]}
+end  
+
+def away_player_number_helper
+  game_hash[:away][:players][0..4].map  { |i| i[:number]}
+end 
+
+#___________________________________________________________________
+#Player numbers 
+
+def player_numbers(team_name)
+  if 
+    game_hash[:home][:team_name] == team_name
+    home_player_number_helper
+  elsif
+    game_hash[:away][:team_name] == team_name
+    away_player_number_helper
+  end
+end
+
+#___________________________________________________________________
+#Player stats test
+
+def all_players_stats
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+end
+
+def player_stats(player_name)
+  stats = {}
+  all_players_stats.each do |stat_hash| 
+    if
+      player_name == stat_hash.values.first
+      
+      stats = stat_hash
+    end  
+  end 
+  stats
+    
+end
+
+#________________________________________________________________
+#Big shoe rebounds helpers
+
+def all_players_stats_rebounds
+  
+  all_players = game_hash[:home][:players] + game_hash[:away][:players]
+  shoe_size = all_players[0..9].map { |i| {i[:shoe] => i[:rebounds]}}
+  
+end 
+
+
+#________________________________________________________________
+#Big shoe rebounds
+
+def big_shoe_rebounds
+  biggest_shoe = 0 
+  rebounds = 0
+  
+  all_players_stats_rebounds.each do |stat_hash| 
+
+    current_shoe_size = stat_hash.keys.first
+    current_rebounds = stat_hash.values.first
+    if current_shoe_size >= biggest_shoe
+      biggest_shoe = current_shoe_size
+      rebounds = current_rebounds
+    end  
+    
+  end 
+  rebounds
+end
+
+
+
+
+
+  
+  
+  
+  
+  
