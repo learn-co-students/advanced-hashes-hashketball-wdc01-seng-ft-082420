@@ -127,3 +127,113 @@ def game_hash
 end
 
 # Write code here
+require './hashketball.rb'
+require 'pry'
+
+def num_points_scored(player)
+  iterator = 0
+  while iterator < game_hash[:home][:players].length do
+    game_hash[:home][:players].each do |player_info|
+      if player_info[:player_name] == player 
+        return player_info[:points]
+      end
+    end
+    iterator += 1
+  end
+  iterator = 0
+  while iterator < game_hash[:away][:players].length do
+    game_hash[:away][:players].each do |player_info|
+      if player_info[:player_name] == player 
+        return player_info[:points]
+      end
+    end
+    iterator += 1
+  end
+end
+
+def shoe_size(player)
+  iterator = 0
+  while iterator < game_hash[:home][:players].length do
+    game_hash[:home][:players].each do |player_info|
+      if player_info[:player_name] == player 
+        return player_info[:shoe]
+      end
+    end
+    iterator += 1
+  end
+  iterator = 0
+  while iterator < game_hash[:away][:players].length do
+    game_hash[:away][:players].each do |player_info|
+      if player_info[:player_name] == player 
+        return player_info[:shoe]
+      end
+    end
+    iterator += 1
+  end
+end
+
+def team_colors(team)
+  game_hash.each do |which_team|
+    if which_team[1][:team_name] == team
+      return which_team[1][:colors]
+    end
+  end
+end
+
+def team_names
+  home_team = game_hash[:home][:team_name]
+  away_team = game_hash[:away][:team_name]
+  team_names = [home_team, away_team]
+end
+
+def player_numbers(team)
+  player_nums = []
+  game_hash.each do |which_team|
+    if which_team[1][:team_name] == team
+      iterator = 0
+      while iterator < which_team[1][:players].length do
+        player_nums.push(which_team[1][:players][iterator][:number])
+        iterator += 1
+      end
+    end
+  end
+  return player_nums
+end
+
+def player_stats(player_name)
+  game_hash[:home][:players].each do |player_info|
+    if player_info[:player_name] == player_name
+      return player_info
+    end
+  end
+  game_hash[:away][:players].each do |player_info|
+    if player_info[:player_name] == player_name
+      return player_info
+    end
+  end
+end
+
+def big_shoe_rebounds
+  iterator = 0
+  shoe_size_array = []
+  while iterator < game_hash[:home][:players].length
+    shoe_size_array.push(shoe_size(game_hash[:home][:players][iterator][:player_name]))
+    iterator +=1
+  end
+  iterator = 0
+  while iterator < game_hash[:away][:players].length
+    shoe_size_array.push(shoe_size(game_hash[:away][:players][iterator][:player_name]))
+    iterator +=1
+  end
+  shoe_size_array = shoe_size_array.sort
+  game_hash[:home][:players].each do |player_info|
+    if player_info[:shoe] == shoe_size_array[shoe_size_array.length - 1]
+      return player_info[:rebounds]
+    end
+  end
+  game_hash[:away][:players].each do |player_info|
+    if player_info[:shoe] == shoe_size_array[shoe_size_array.length - 1]
+      return player_info[:rebounds]
+    end
+  end
+end
