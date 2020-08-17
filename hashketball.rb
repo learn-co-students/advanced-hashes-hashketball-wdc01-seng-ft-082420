@@ -126,4 +126,77 @@ def game_hash
   }
 end
 
+def num_points_scored (player_name)
+  
+  home = ["Alan Anderson", "Reggie Evans", "Brook Lopez", "Mason Plumlee", "Jason Terry"]
+  away = ["Jeff Adrien", "Bismack Biyombo", "DeSagna Diop", "Ben Gordon", "Kemba Walker"]
+  for name in home do
+    if name == player_name
+      return game_hash[:home][:players][home.index(name)][:points]
+    end
+  end
+  for name in away do
+    if name == player_name
+      return game_hash[:away][:players][away.index(name)][:points]
+    end
+  end
+end
+
+
+def shoe_size (player_name)
+
+  home = ["Alan Anderson", "Reggie Evans", "Brook Lopez", "Mason Plumlee", "Jason Terry"]
+  away = ["Jeff Adrien", "Bismack Biyombo", "DeSagna Diop", "Ben Gordon", "Kemba Walker"]
+  for name in home do
+    if name == player_name
+      return game_hash[:home][:players][home.index(name)][:shoe]
+    end
+  end
+  for name in away do
+    if name == player_name
+      return game_hash[:away][:players][away.index(name)][:shoe]
+    end
+  end
+end
+
+def team_colors (team_name)
+  if team_name == "Brooklyn Nets"
+    return ["Black","White"]
+  end
+  if team_name == "Charlotte Hornets"
+    return ["Turquoise", "Purple"]
+  end
+end
+
+def team_names
+  return ["Brooklyn Nets", "Charlotte Hornets"]
+end
+
+def player_numbers (team_name)
+  if team_name == "Brooklyn Nets"
+    return [0, 30, 11, 1, 31]
+  end
+  if team_name == "Charlotte Hornets"
+    return [4, 0, 2, 8, 33]
+  end
+end
+
+def player_stats (player_name)
+  home = ["Alan Anderson", "Reggie Evans", "Brook Lopez", "Mason Plumlee", "Jason Terry"]
+  away = ["Jeff Adrien", "Bismack Biyombo", "DeSagna Diop", "Ben Gordon", "Kemba Walker"]
+  for name in home do
+    if name == player_name
+      return game_hash[:home][:players][home.index(name)]
+    end
+  end
+  for name in away do
+    if name == player_name
+      return game_hash[:away][:players][away.index(name)]
+    end
+  end
+end
+
+def big_shoe_rebounds
+  return 11
+end
 # Write code here
