@@ -1,3 +1,4 @@
+require 'pry'
 # Write your code below game_hash
 def game_hash
   {
@@ -125,5 +126,16 @@ def game_hash
     }
   }
 end
-
 # Write code here
+def num_points_scored(player_name)
+  binding.pry
+  game_hash.each do |location, team_data|
+    binding.pry
+    team_data.each do |attribute, data|
+      binding.pry
+      data.each do |data_item|
+        binding.pry
+      end
+    end
+  end
+end
