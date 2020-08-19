@@ -128,14 +128,37 @@ def game_hash
 end
 # Write code here
 def num_points_scored(player_name)
-  binding.pry
-  game_hash.each do |location, team_data|
-    binding.pry
-    team_data.each do |attribute, data|
-      binding.pry
-      data.each do |data_item|
-        binding.pry
-      end
-    end
+  player_points = player_hash.find {|player| player[:player_name] == player_name}
+  player_points[:points]
+end
+
+def shoe_size(player_name)
+  player_shoe_size = player_hash.find {|player| player[:player_name] == player_name}
+  player_shoe_size[:shoe]
+end
+
+def team_colors(team_name)
+  game_hash.each do |home_away, team_data|
+   if team_data[:team_name]== team_name
+  return team_data[:colors]
+   end
+end
+end
+
+def team_names
+  game_hash.collect do |team, team_data|
+    team_data[:team_name]
   end
 end
+
+def player_numbers(team_name)
+  numbers_list=[]
+game_hash.each do |team, team_data|
+  binding.pry
+end
+end
+
+def player_hash
+ all_players= game_hash[:home][:players]+ game_hash[:away][:players]
+end
+#binding.pry
