@@ -154,9 +154,20 @@ end
 def player_numbers(team_name)
   numbers_list=[]
 game_hash.each do |team, team_data|
-  binding.pry
+  if team_data[:team_name]== team_name
+    team_data[:players].each do |player|
+      player.each do |key, value|
+        #binding.pry
+        if key == :number
+          numbers_list.push value
+        end
+      end
+    end
+  end
 end
+numbers_list
 end
+
 
 def player_hash
  all_players= game_hash[:home][:players]+ game_hash[:away][:players]
