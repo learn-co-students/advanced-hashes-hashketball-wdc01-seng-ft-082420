@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +128,83 @@ def game_hash
   }
 end
 
-# Write code here
+
+def player_helper
+  game_hash[:home][:players] + game_hash[:away][:players]
+end
+
+
+def get_team_helper(team)
+  case team
+  when game_hash[:home][:team_name]
+    game_hash[:home]
+  else 
+    game_hash[:away]
+  end
+end
+#binding.pry
+
+def num_points_scored(player_name)
+  player_helper.each do |player|
+    #binding.pry
+    if player[:player_name] == (player_name)
+      return player[:points]
+    end
+  end
+end
+
+
+def shoe_size(player_name)
+  player_helper.each do |player|
+    #binding.pry
+    if player[:player_name] == (player_name)
+      return player[:shoe]
+    end
+  end
+end
+
+
+def team_colors(team)
+  get_team_helper(team)[:colors]
+end
+
+
+def team_names
+  game_hash.map {|location, team| team[:team_name]}
+end
+
+
+def player_numbers(team)
+  get_team_helper(team)[:players].map do |player|
+    #binding.pry
+    player[:number]
+  end
+end
+
+
+def player_stats(player_name)
+  player_helper.each do |player|
+    if player[:player_name] == (player_name)
+      return player
+    end
+  end
+end
+
+
+def big_shoe_rebounds 
+  biggest_shoe = 0
+  most_rebounds = 0
+  game_hash.each do |team, team_info|
+    team_info[:players].each do |player_stats|
+      if biggest_shoe < player_stats[:shoe]
+        most_rebounds = player_stats[:rebounds]
+        biggest_shoe = player_stats[:shoe]
+      end
+    end
+  end
+most_rebounds
+end
+
+
+
+
