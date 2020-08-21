@@ -138,10 +138,9 @@ def get_team_helper(team)
   case team
   when game_hash[:home][:team_name]
     game_hash[:home]
-  when game_hash[:away][:team_name]
+  else 
     game_hash[:away]
   end
-  #binding.pry
 end
 #binding.pry
 
@@ -166,19 +165,44 @@ end
 
 
 def team_colors(team)
-  game_hash.each do |team, attribute|
-    binding.pry
-    if team[:team_name] == (team)
-      return team[:color]
+  get_team_helper(team)[:colors]
+end
+
+
+def team_names
+  game_hash.map {|location, team| team[:team_name]}
+end
+
+
+def player_numbers(team)
+  get_team_helper(team)[:players].map do |player|
+    #binding.pry
+    player[:number]
+  end
+end
+
+
+def player_stats(player_name)
+  player_helper.each do |player|
+    if player[:player_name] == (player_name)
+      return player
     end
   end
 end
 
 
-def player_numbers(team)
-  get_team_helper(team)[:players].map do |key, value|
-    value[:number]
+def big_shoe_rebounds 
+  biggest_shoe = 0
+  most_rebounds = 0
+  game_hash.each do |team, team_info|
+    team_info[:players].each do |player_stats|
+      if biggest_shoe < player_stats[:shoe]
+        most_rebounds = player_stats[:rebounds]
+        biggest_shoe = player_stats[:shoe]
+      end
+    end
   end
+most_rebounds
 end
 
 
